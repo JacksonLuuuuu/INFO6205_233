@@ -7,3 +7,11 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
 |:---|:---|
 |Jarvis(Jiawei) Yao|001858168|
 |Boxuan Lu|001833213|
+
+****
+## Directory
+* [Problem Discription](#Problem Discription)
+    * A
+    * A
+        *  A
+        *  A
