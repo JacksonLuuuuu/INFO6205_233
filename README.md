@@ -1,6 +1,6 @@
 Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algorithm
 =======
-[![](/img/flappy-bird-head.jpg "Flappy Bird")][Flappy Bird]
+![](/img/flappy-bird-header.jpg "Flappy Bird")
 # INFO6205_233
 
 |Name|NUID|
