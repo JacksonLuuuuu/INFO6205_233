@@ -47,3 +47,20 @@ Gene of each bird describes a specific move at every unit step. A bird can choos
 #### ClassDiagram
 
 ![](/img/FlappyBird.cld.jpg "class diagram")
+
+#### grid
+
+This class difine the inherent property of a single grid which will be used to build the whole stage.
+> 00 grid
+>> 01 bird
+>>> 02 ceilPipe
+>>>> 03 groundPipe
+>>>>> 04 ceil
+>>>>>> 05 ground
+>>>>>>> 06 end
+>>>>>>>> 07 fruit
+>>>>>>>>> 08 birdeating
+
+#### bird
+
+
