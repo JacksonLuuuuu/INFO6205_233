@@ -63,4 +63,11 @@ This class difine the inherent property of a single grid which will be used to b
 
 #### bird
 
+Bird class implemnts Comparable interface and override compareTo() method so as to make automatical sort possible in PriorityBlockingQueue<bird>. You can also check **mutate_individual()**, **crossover()** function definition here. 
+   
+**fatigued** attribute demonstrates whether or not this bird has explored the stage at once.
+**wholeLife** stores all the events triggered throughout last trip
+**load(stage stage)** transmits our birds into constant stage.
+**startHerEvilLIfe()** urges birds to set foot on their trip.
 
+<img src="/img/birdClass.jpg" width="280" height="500" alt="bird"/>
