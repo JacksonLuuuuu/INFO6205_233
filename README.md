@@ -12,10 +12,18 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
 ## Directory
 * [Problem Discription](#ProblemDiscription)
 * [Gene Expression](#GeneExpression)
-    * A
-    * A
-        *  A
-        *  A
+* [Class Definition](#ClassDefinition)
+    * Class Diagram
+    * grid
+    * bird
+    * stage
+    * pipeUtil
+    * gene
+    * birdCase
+    * generation
+    * Main
+    * trainTask
+    
         
 ### ProblemDiscription
 -------
@@ -32,3 +40,8 @@ Gene of each bird describes a specific move at every unit step. A bird can choos
 |01|Hover|
 |02|Flap Down|
 |03|Stop and Eat|
+
+### ClassDefinition
+-------
+
+#### ClassDiagram
