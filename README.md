@@ -49,6 +49,10 @@ Gene of each bird describes a specific move at every unit step. A bird can choos
 
 ### ParallelComputationMechanism
 -------
+![](/img/GA-Concurrency.jpg "Concurrency Process")
+
+At first, the main thread achieves system initialization, and then creates five threads. For each generation, the population is split into n buckets and each thread performs the fitness evaluation, and selection for all the organisms of one bucket in parallel with all other buckets. We used a CyclicBarrier Object to make threads blocking when the thread finish running task of one generation. Until all buckets are done, the population of each bucket merges back into one sorted solution, generates new generation and releases all threads. When the generation reaches maximum number of generations. All the threads include main thread end.
+
 
 ### ClassDefinition
 -------
