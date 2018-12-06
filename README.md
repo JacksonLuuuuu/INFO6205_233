@@ -45,3 +45,5 @@ Gene of each bird describes a specific move at every unit step. A bird can choos
 -------
 
 #### ClassDiagram
+
+![](/img/FlappyBird.cld.jpg "class diagram")
