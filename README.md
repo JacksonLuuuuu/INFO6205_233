@@ -13,16 +13,16 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
 * [Problem Discription](#ProblemDiscription)
 * [Gene Expression](#GeneExpression)
 * [Class Definition](#ClassDefinition)
-    * Class Diagram
-    * grid
-    * bird
-    * stage
-    * pipeUtil
-    * gene
-    * birdCase
-    * generation
-    * Main
-    * trainTask
+    * Class Diagram(#ClassDiagram)
+    * grid(#grid)
+    * bird(#bird)
+    * stage(#stage)
+    * pipeUtil(#pipeUtil)
+    * gene(#gene)
+    * birdCase(#birdCase)
+    * generation(#generation)
+    * trainTask(#trainTask)
+    * Main(#Main)
     
         
 ### ProblemDiscription
@@ -63,11 +63,72 @@ This class difine the inherent property of a single grid which will be used to b
 
 #### bird
 
-Bird class implemnts Comparable interface and override compareTo() method so as to make automatical sort possible in PriorityBlockingQueue<bird>. You can also check **mutate_individual()**, **crossover()** function definition here. 
+Bird class implemnts **Comparable** interface and override compareTo() method so as to make automatical sort possible in PriorityBlockingQueue<bird>. You can also check **mutate_individual()**, **crossover()** function definition here. <br>
    
-**fatigued** attribute demonstrates whether or not this bird has explored the stage at once.
-**wholeLife** stores all the events triggered throughout last trip
-**load(stage stage)** transmits our birds into constant stage.
-**startHerEvilLIfe()** urges birds to set foot on their trip.
+**fatigued** attribute demonstrates whether or not this bird has explored the stage at once.<br>
+**wholeLife** stores all the events triggered throughout last trip<br>
+**load(stage stage)** transmits our birds into constant stage.<br>
+**startHerEvilLIfe()** urges birds to set foot on their trip.<br>
 
 <img src="/img/birdClass.jpg" width="280" height="500" alt="bird"/>
+
+#### stage
+
+Stage class taks the role of visualization and updating bird position in map. It implemnts **Clonable** interface. <br>
+Different Grid Mark:
+```Java
+	public void draw() {
+		for(int h=this.height-1;h>=0;h--) {
+			for(int l=0;l<this.length;l++) {
+				switch(grids[l][h].getGridStat()) {
+					case 0: System.out.print("  ");break;
+					case 1: System.out.print("_/");break;
+					case 2: System.out.print("||");break;
+					case 3: System.out.print("||");break;
+					case 4: System.out.print("--");break;
+					case 5: System.out.print("--");break;
+					case 6: System.out.print("^");break;
+					case 7: System.out.print("**");break;
+					case 8: System.out.print("<o");break;
+					default: System.out.print("  ");break;
+				}
+			}
+			System.out.println();
+		}
+	}
+```
+
+<img src="/img/stageClass.jpg" width="280" height="500" alt="bird"/>
+
+#### pipeUtil
+
+Obviously **pipeUtil** is a utility class which defines functions to assist in parameter initialization in stage.
+
+#### gene
+Gene class is actually an enum class which defines gene compositions.
+
+### birdCase
+BirdCase class is actually an enum class. Stage will return the bird case everytime it moves the bird forward.
+
+|00|01|02|03|04|05|06|
+|:---|:---|:---|:---|:---|:---|:---|
+|Start|TouchEnd|TouchBoundary|TouchPipe|Flying|CrossSlit|Eating|
+
+#### generation
+Generation class defines global hyper parameters used in generic algorithm:
+```Java
+	public static final int max_iter_step = 10000;
+	public static final int generation_scale = 1000;
+	public static final int stage_length = 250;
+	public static final int stage_height= 15;
+	public static final double mutat_ratio = 0.0001;
+ ```
+ Also, we implements Roulette Wheel Selection and Rank Selection in this class to pick up genes with highest adaptability.<br>
+ **offSpringBreed** function is used to reproduce newborn birds from elder birds.
+ <img src="/img/generationClass.jpg" width="700" height="450" alt="bird"/>
+ 
+ #### trainTask
+ **TrainTask** class makes multi-thread available in our project. As we have discussed above, five threads are drafted to run a batch of tasks of one whole generation and then combine the results at barrier.
+ 
+ #### Main
+ **Main** is the dominating controller to run a demo using in concurrent mode.
