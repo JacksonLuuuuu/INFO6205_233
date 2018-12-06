@@ -156,7 +156,8 @@ Meanwhile, log will trace all the process and make a document of the local best 
 ```
 hybrid_g8061_Thread-4 : 6140
 ```
-
+![](/img/M1.jpeg "M1")
+![](/img/M2.jpeg "M1")
 
 ### UnitTest
 -------
@@ -174,9 +175,9 @@ Parameters:
 So there will be 9 columns in total.<br>
 - [x] stage 1<br>
 Initially, Initially all the birds would do the "same" wrong thing. So they would all die out quickly.
-```
 
-```
+![](/img/T1.jpeg "demo1")
+
 - [x] stage 2<br>
 After some time however, they would start to show more variation, but still perform the wrong moves. This gives us a spread of flappy birds throughout the screen (lengthwise).
 
@@ -185,14 +186,15 @@ After a bit of training (>**100** times) the spread decreases and is more concen
 
 - [x] stage 4<br>
 As time passed by(>=**1091** times), model reach a local optimum, which means bird reach the end but still can improve their scores by eating more fruits and pass the holes more smoothly.
-```
 
-```
+![](/img/M1.jpeg "demo2")
+![](/img/M2.jpeg "demo3")
+
 - [x] final but not best stage<br>
 Finally(==**8061** generation), birds have learnt to eat some fruits and be more prudent when passing holes. In this pattern, they can learn to go pass every fixed stage and perform better than what average human can do.
-```
 
-```
+![](/Final1.jpeg "demo1")
+![](/Final.jpeg "demo1")
 
 ### ParallelComputationMechanism
 -------
