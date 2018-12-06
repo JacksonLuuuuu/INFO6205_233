@@ -193,8 +193,8 @@ As time passed by(>=**1091** times), model reach a local optimum, which means bi
 - [x] final but not best stage<br>
 Finally(==**8061** generation), birds have learnt to eat some fruits and be more prudent when passing holes. In this pattern, they can learn to go pass every fixed stage and perform better than what average human can do.
 
-![](/Final1.jpeg "demo1")
-![](/Final.jpeg "demo1")
+![](/img/Final1.jpeg "demo1")
+![](/img/Final2.jpeg "demo1")
 
 ### ParallelComputationMechanism
 -------
