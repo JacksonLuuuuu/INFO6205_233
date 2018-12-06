@@ -24,6 +24,7 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
 * [Log](#Log)
 * [UnitTest](#UnitTest)
 * [Parallel Computation Mechanism](#ParallelComputationMechanism)
+* [Demo](#Demo)
 * [Class Definition](#ClassDefinition)
     * Class Diagram
     * grid
@@ -141,7 +142,8 @@ Newborns/Alive parents/Random new indeviduals make up the next generation by pro
 
 ### Log
 -------
-Logs will be generated and stored in txt format when a higher socore occurs. You can find all the events triggered by this bird throughout his life in our record. Gene sequence is recorded as well.
+**Log files are stored on local path so if you want to run it please make a change anyway.**<br>
+Logs will be generated and stored in txt format when a higher socore occurs. You can find all the events triggered by this bird throughout his life in our record. Gene sequence is recorded as well.<br>
 Log will be something like this:
 ```
 Name: primitive_g0_Thread-1
@@ -150,10 +152,109 @@ Whole life: Start -> Flying -> Flying -> Empty_handed -> Flying -> Empty_handed 
 Gene sequence: -> FlapUp -> Hover -> FlapUp_Eat -> FlapUp_Eat -> FlapUp_Eat -> FlapUp -> FlapUp_Eat -> FlapUp -> Hover_Eat -> Hover_Eat -> FlapUp -> FlapDown -> FlapDown -> Hover_Eat -> FlapUp_Eat -> Hover -> FlapDown -> Hover_Eat -> FlapUp -> FlapDown -> FlapDown_Eat -> Hover_Eat -> FlapUp -> Hover -> FlapUp_Eat -> Hover -> FlapDown -> FlapDown_Eat -> Hover -> Hover -> FlapUp_Eat -> FlapUp -> FlapUp -> FlapDown_Eat -> FlapDown -> FlapUp_Eat -> FlapUp -> FlapDown_Eat -> FlapDown -> Hover -> Hover_Eat -> Hover -> FlapUp -> Hover_Eat -> Hover_Eat -> Hover_Eat -> Hover_Eat -> Hover_Eat -> Hover -> FlapDown_Eat -> FlapDown_Eat -> FlapUp_Eat -> Hover -> FlapDown -> FlapUp -> Hover_Eat -> FlapUp -> FlapUp -> FlapUp_Eat -> Hover_Eat -> Hover -> FlapDown -> FlapUp_Eat -> FlapUp -> FlapDown_Eat -> Hover_Eat -> FlapDown -> Hover -> Hover -> FlapDown_Eat -> Hover -> FlapDown_Eat -> Hover -> FlapDown -> FlapDown_Eat -> FlapUp -> FlapDown -> FlapUp -> FlapDown -> FlapDown -> FlapDown -> FlapUp -> FlapUp -> Hover_Eat -> FlapDown -> FlapDown -> Hover -> FlapDown -> FlapUp -> Hover -> Hover -> Hover -> Hover -> FlapDown_Eat -> FlapDown -> FlapDown_Eat -> FlapUp -> Hover_Eat -> FlapUp_Eat -> Hover_Eat
 
 ```
+Meanwhile, log will trace all the process and make a document of the local best one:(in /history/vicissitude)
+```
+hybrid_g8061_Thread-4 : 6140
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^
+                              ||                            ||                            ||                            ||                            ||                            ||                                                          ||                            ||      ^
+                                                            ||                                                          ||                            ||  **                        ||                                                          ||                        _/  _/      ^
+                                        _/  _/              ||                                                          ||                            ||                            ||                                                          ||                    _/_/  _/  _/  _/^
+                  _/    _/_/    _/    _/  _/  _/_/          ||                                                          ||                            ||      _/                    ||                      _/_/_/_/_/                          ||                  _/        ||  _/  ^
+              _/_/  _/_/    _/_/  _/<o            _/  _/  _/_/            _/            _/_/  _/  _/                    ||                              _/_/_/  _/                  ||                    _/      ||  _/<o  _/                  ||                _/          ||      ^
+  _/_/    _/_/                                      _/  _/    _/  _/    _/  _/        _/    _/  _/  _/_/    _/_/_/      ||                  **  _/_/_/_/          _/                                  _/_/        ||      _/  _/                ||              _/            ||      ^
+_/    _/_/                                                      _/  _/_/      _/_/  _/                  <o_/      _/_/    _/                  _/      ||            _/      _/  _/_/_/_/    _/_/  _/_/            ||            _/              ||          _/_/      **      ||      ^
+                                                                                  _/      ||                          _/_/  _/            _/_/        ||              _/  _/  _/    ||  _/_/    _/                ||              _/      _/              _/                  ||      ^
+                                                            ||                            ||                                  _/  _/  _/_/            ||                _/          ||                            ||                _/_/_/  _/_/_/_/    _/                    ||      ^
+                                                            ||                            ||                                    _/  _/                ||                            ||          **                ||                                _/_/                      ||      ^
+                                                            ||                **          ||                                                          ||                            ||                            ||                                                          ||      ^
+          **                                                ||                            ||                                                          ||                            ||                            ||                                                          ||      ^
+                                                            ||                            ||                            ||                            ||                            ||                            ||                            ||                            ||      ^
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^
+
+
+
+```
 
 ### UnitTest
 -------
 
+### Demo
+-------
+Parameters:
+- stage_length:140
+- stage_height:15
+- interval between columns of pipes:15
+- generation population:1000
+- max iteration steps:10000
+- mutation ratio:0.01%
+So there will be 9 columns in total.<br>
+- [x] stage 1<br>
+Initially, Initially all the birds would do the "same" wrong thing. So they would all die out quickly.
+```
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^
+                                                            ||                            ||                            ||                            ||                            ||                                                          ||                            ||      ^
+                                                            ||                            ||                            ||                            ||                            ||                                                          ||                                    ^
+                              ||                            ||                            ||                            ||                            ||                            ||                                                          ||                                    ^
+                              ||                            ||                            ||                            ||                            ||                            ||                                **                        ||                                    ^
+                              ||                            ||                            ||                            ||                            ||                            ||                                                                                                ^
+              _/  _/          ||                            ||                            ||                                                          ||                            ||                                                                                                ^
+_/_/_/  _/  _/  _/  _/_/_/_/_/||        **                  ||                            ||                                                          ||                    **      ||                                                                                        ||      ^
+      _/  _/                  ||                                                          ||                                                          ||                                                                                        ||                            ||      ^
+                              ||                                  **                      ||                  **                                      ||                              **                          ||                            ||                      **    ||      ^
+                          **  ||                                                          ||                                  **                                                                                  ||                            ||                            ||      ^
+                              ||                                                                                                                                                                                  ||                            ||                            ||      ^
+                              ||                            ||                                                          ||                                                                                        ||                            ||                            ||      ^
+                              ||                            ||                            ||                            ||                                                                                        ||                            ||                            ||      ^
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^
+```
+- [x] stage 2<br>
+After some time however, they would start to show more variation, but still perform the wrong moves. This gives us a spread of flappy birds throughout the screen (lengthwise).
+
+- [x] stage 3<br>
+After a bit of training (>**100** times) the spread decreases and is more concentrated at the height where there is a hole in the pipes. They start performing a lot better since they now understand when to flap and when not to.
+
+- [x] stage 4<br>
+As time passed by(>=**1091** times), model reach a local optimum, which means bird reach the end but still can improve their scores by eating more fruits and pass the holes more smoothly.
+```
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^
+                              ||                            ||                            ||                            ||                            ||                            ||                                                          ||                            ||      ^
+                                                            ||                                                          ||                            ||  **                        ||                                                          ||                                    ^
+                                                            ||                                                          ||                            ||                            ||                                                          ||                    _/  _/  _/      ^
+                  _/                                        ||                                                          ||                            ||      _/                    ||                      _/_/_/_/_/                          ||                  _/  _/  _/||_/    ^
+              _/_/  _/_/            **  _/  _/                            _/                                            ||                              _/_/_/  _/                  ||                    _/      ||  _/**                      ||                _/          ||  _/  ^
+  _/_/      _/          _/_/    _/    _/  _/  _/_/            _/  _/    _/  _/        _/_/_/  _/  _/              _/_/  ||_/                **  _/_/_/_/          _/                                  _/_/        ||    _/  _/                  ||          _/_/_/            ||    _/^
+_/    _/_/_/                _/_/  _/_/            _/      _/_/  _/  _/_/      _/_/  _/      _/  _/  _/  **  _/_/_/    _/_/  _/                _/      ||            _/      _/  _/_/_/_/    _/_/  _/_/            ||      _/  _/_/              ||        _/          **      ||      ^
+                                                    _/_/_/                        _/      ||          _/_/_/                  _/  _/      _/_/        ||              _/  _/  _/    ||  _/_/    _/                ||              _/      _/_/_/_/_/    _/                    ||      ^
+                                                            ||                            ||                                    _/  _/_/_/            ||                _/          ||                            ||                _/_/_/          _/_/                      ||      ^
+                                                            ||                            ||                                                          ||                            ||          **                ||                                                          ||      ^
+                                                            ||                **          ||                                                          ||                            ||                            ||                                                          ||      ^
+          **                                                ||                            ||                                                          ||                            ||                            ||                                                          ||      ^
+                                                            ||                            ||                            ||                            ||                            ||                            ||                            ||                            ||      ^
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^
+
+
+```
+- [x] final but not best stage<br>
+Finally(==**8061** generation), birds have learnt to eat some fruits and be more prudent when passing holes. In this pattern, they can learn to go pass every fixed stage and perform better than what average human can do.
+```
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^
+                              ||                            ||                            ||                            ||                            ||                            ||                                                          ||                            ||      ^
+                                                            ||                                                          ||                            ||  **                        ||                                                          ||                        _/  _/      ^
+                                        _/  _/              ||                                                          ||                            ||                            ||                                                          ||                    _/_/  _/  _/  _/^
+                  _/    _/_/    _/    _/  _/  _/_/          ||                                                          ||                            ||      _/                    ||                      _/_/_/_/_/                          ||                  _/        ||  _/  ^
+              _/_/  _/_/    _/_/  _/<o            _/  _/  _/_/            _/            _/_/  _/  _/                    ||                              _/_/_/  _/                  ||                    _/      ||  _/<o  _/                  ||                _/          ||      ^
+  _/_/    _/_/                                      _/  _/    _/  _/    _/  _/        _/    _/  _/  _/_/    _/_/_/      ||                  **  _/_/_/_/          _/                                  _/_/        ||      _/  _/                ||              _/            ||      ^
+_/    _/_/                                                      _/  _/_/      _/_/  _/                  <o_/      _/_/    _/                  _/      ||            _/      _/  _/_/_/_/    _/_/  _/_/            ||            _/              ||          _/_/      **      ||      ^
+                                                                                  _/      ||                          _/_/  _/            _/_/        ||              _/  _/  _/    ||  _/_/    _/                ||              _/      _/              _/                  ||      ^
+                                                            ||                            ||                                  _/  _/  _/_/            ||                _/          ||                            ||                _/_/_/  _/_/_/_/    _/                    ||      ^
+                                                            ||                            ||                                    _/  _/                ||                            ||          **                ||                                _/_/                      ||      ^
+                                                            ||                **          ||                                                          ||                            ||                            ||                                                          ||      ^
+          **                                                ||                            ||                                                          ||                            ||                            ||                                                          ||      ^
+                                                            ||                            ||                            ||                            ||                            ||                            ||                            ||                            ||      ^
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^
+
+
+```
 
 ### ParallelComputationMechanism
 -------
