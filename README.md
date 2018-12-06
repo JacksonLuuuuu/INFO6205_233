@@ -13,16 +13,16 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
 * [Problem Discription](#ProblemDiscription)
 * [Gene Expression](#GeneExpression)
 * [Class Definition](#ClassDefinition)
-    * Class Diagram(#ClassDiagram)
-    * grid(#grid)
-    * bird(#bird)
-    * stage(#stage)
-    * pipeUtil(#pipeUtil)
-    * gene(#gene)
-    * birdCase(#birdCase)
-    * generation(#generation)
-    * trainTask(#trainTask)
-    * Main(#Main)
+    * Class Diagram
+    * grid
+    * bird
+    * stage
+    * pipeUtil
+    * gene
+    * birdCase
+    * generation
+    * trainTask
+    * Main
     
         
 ### ProblemDiscription
