@@ -21,6 +21,8 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
     * Crossover
     * Mutate
     * Reproduce
+* [Log](#Log)
+* [UnitTest](#UnitTest)
 * [Parallel Computation Mechanism](#ParallelComputationMechanism)
 * [Class Definition](#ClassDefinition)
     * Class Diagram
@@ -46,14 +48,16 @@ The bird class conveys genetic perspective of our project. Core attribute of bir
 
 ### GeneExpression
 -------
-Gene of each bird describes a specific move at every unit step. A bird can choose to flap up, flap down, hover and stop to eat fruit. These four independent move is defined in gene class as **Enum** variable. An array is used to store seperate genes which is stochastically generated and combined in sequence.
+Gene of each bird describes a specific move at every unit step. A bird can choose to flap up, flap down, hover barely or make a move and also find fruit at current position. These **six** independent moves are defined in gene class as **Enum** variable. An array is used to store seperate genes which is stochastically generated and combined in sequence.
 
 |Genotype|phenotype|
 |:---|:---|
 |00|Flap Up|
 |01|Hover|
 |02|Flap Down|
-|03|Stop and Eat|
+|03|Flap Up|
+|04|Flap Up|
+|05|Flap Up|
 
 ### Fitness
 -------
@@ -72,6 +76,7 @@ In our game, birds will be labeled by scores after it finish game once:
 			    case TouchEnd: this.score = this.score*2;break;// Touch end will be rewarded
 			    case TouchBoundary: this.score = this.score==0?0:this.score/2;break;// Touch boundary is not recommended
 			    case TouchPipe: this.score = this.score==0?0:this.score/5;break;// Touch pipe is not allowed
+		    	    case Empty_handed: this.score = this.score<5?0:this.score-5;break;//Bird should better not do futile work because it may lose energy
 			    default: break;
 			}
 		}
@@ -129,17 +134,26 @@ PS: set **father_first** flag to true/false to breed a pair of offsprings
 
 #### Mutate
 After crossover, newborns still have chance to mutate its gene and the mutate ratio is set as 0.01%.
+Apart from routine mutate, a large-scale mutation is prepared to help birds jump out from **local optimum** and achieve the **global maximum** scores. The large mutation will be triggered when the deviation of whole generation is small but best score hasn't reached the hreshold we expect for the best score.
 
 #### Reproduce
 Newborns/Alive parents/Random new indeviduals make up the next generation by proportion 5:3:2
 
+### Log
+-------
+Logs will be generated and stored in txt format when a higher socore occurs. You can find all the events triggered by this bird throughout his life in our record. Gene sequence is recorded as well.
+```
+
+```
+
+### UnitTest
+-------
 
 
 ### ParallelComputationMechanism
 -------
 ![](/img/GA-Concurrency.jpg "Concurrency Process")
-
-At first, the main thread achieves system initialization, and then creates five threads. For each generation, the population is split into n buckets and each thread performs the fitness evaluation, and selection for all the organisms of one bucket in parallel with all other buckets. We used a CyclicBarrier Object to make threads blocking when the thread finish running task of one generation. Until all buckets are done, the population of each bucket merges back into one sorted solution, generates new generation and releases all threads. When the generation reaches maximum number of generations. All the threads include main thread end.
+ At first, the main thread achieves system initialization, and then creates five threads. For each generation, the population is split into n buckets and each thread performs the fitness evaluation, and selection for all the organisms of one bucket in parallel with all other buckets. We used a CyclicBarrier Object to make threads blocking when the thread finish running task of one generation. Until all buckets are done, the population of each bucket merges back into one sorted solution, generates new generation and releases all threads. When the generation reaches maximum number of generations. All the threads include main thread end.
 
 ### ClassDefinition
 -------
