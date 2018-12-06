@@ -11,7 +11,12 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
 ****
 ## Directory
 * [Problem Discription](#Problem Discription)
+* 
     * A
     * A
         *  A
         *  A
+        
+### Problem Discription
+-------
+[Flappy Bird](https://flappybird.io "Try Flappy Bird") used to be a prevailing mobile game through the past few years. In this game, players will be required to navigate their bird to pass columns of green pipes without hitting them. Players will get awarded every time the bird surpasses a column of pipe. But in fact, frequent death also tortures players after their impulsive tap 
