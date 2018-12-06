@@ -13,6 +13,14 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
 * [Problem Discription](#ProblemDiscription)
 * [Genetic Overview](#Overview)
 * [Gene Expression](#GeneExpression)
+* [Fitness](#Fitness)
+* [Evolution](#Evolution)
+    * Sort
+    * Select
+    * Eliminate
+    * Crossover
+    * Mutate
+    * Reproduce
 * [Parallel Computation Mechanism](#ParallelComputationMechanism)
 * [Class Definition](#ClassDefinition)
     * Class Diagram
@@ -34,7 +42,7 @@ Genetic algorithm is a search-based optimization technique inspired by the proce
 
 ### Overview
 -------
-
+The bird class conveys genetic perspective of our project. Core attribute of bird is its gene whose length depends on the moves towards the end. Our birds will lay down their life to find the path and classic pioneers' memory will be carved into genes of descendant. After effort of infinite generations, birds finally figures out the most efficient path and their genes will maintain stable.
 
 ### GeneExpression
 -------
@@ -47,12 +55,88 @@ Gene of each bird describes a specific move at every unit step. A bird can choos
 |02|Flap Down|
 |03|Stop and Eat|
 
+### Fitness
+-------
+Fitness strategy is decided to give award to outstanding individuals and do punishment on those with poor performance.<br>
+In our game, birds will be labeled by scores after it finish game once:
+```Java
+	public int fitness() {
+		// Basic Point
+		this.score = getStage().getHerEvilLifStopHere()*20;
+		
+		while(!getStage().getEventTriggered().isEmpty()) {
+			birdCase bc = getStage().getEventTriggered().remove();
+			this.setWholeLife(this.getWholeLife() + " -> "+bc);
+			switch(bc) {
+			    case Eating: this.score += 66;// Eat fruit will get points
+			    case TouchEnd: this.score = this.score*2;break;// Touch end will be rewarded
+			    case TouchBoundary: this.score = this.score==0?0:this.score/2;break;// Touch boundary is not recommended
+			    case TouchPipe: this.score = this.score==0?0:this.score/5;break;// Touch pipe is not allowed
+			    default: break;
+			}
+		}
+		// Pass the column will add extra points
+		while(!getStage().getDis2edge().isEmpty()) {
+			this.score += getStage().getDis2edge().remove()*15;
+		}
+		return score;
+	}
+```
+
+### Evolution
+-------
+Evolution in natural world means eliminating bad individuals and preserve good individuals. In our game, evolution machanism is built by sort/select/eliminate functions.
+
+#### Sort
+PriorityBlockingQueue is introduced to store bird generation because of its useful features. We have bird implemented Comparable interface and they can be sorted automatically at the same time they are added to this container.
+```Java
+PriorityBlockingQueue<bird> pq = new PriorityBlockingQueue<>();
+```
+
+#### Select
+We implement two different selection method: Roulette Wheel Selection and Rank Selection.(exact priciple will not be discussed here)<br>
+According to the requiredment, we select **half of generation**, which means 500, to be survived and bleed. Bird with higher score is more possible to be selected to survive and reproduce the offsprings.
+
+
+#### Eliminate
+A **delay elimination** mechanism is implemented inspired by how Java JVM do **Garbage Cleaning**. We don't want to kill those bad individuals instantly. They are allowed to live and contribute their gene for another generation. We set a flag called **qualification flag** on each individual. This flag can be set to four values: newborn, good(to be survived), pending(last for one more generation), kill(will be eliminated after this turn). This is like what JVM has done on those unreferenced instances. Instances will be labeled 'grey' at first scan if it is found unlinked with other one , but they will only be swept out after two consecutive fail inspections.
+
+#### Crossover
+Father and mother will reproduce a pair of offspring after crossover. We will judge on past performance of both gene suppliers and create two different newborns. On each bit of gene, newborns are more likely to inherit from the one with higher scores.
+```Java
+	public gene[] crossover(bird father, bird mother, boolean father_first) {
+		Random r = new Random();
+		gene[] x_genes = new gene[generation.stage_length];
+		double genetic_prob = (double)father.score/(father.score+mother.score);
+		if(father_first) {
+			for(int i=0;i<generation.stage_length;i++) {
+				if(i<father.getStage().getHerEvilLifStopHere())
+					x_genes[i] = (r.nextDouble()<genetic_prob?father.genes[i]:mother.genes[i]);
+				else x_genes[i] = gene.getRandGene();
+			}
+		}
+		else {
+			for(int i=0;i<generation.stage_length;i++) {
+				if(i<mother.getStage().getHerEvilLifStopHere()) 
+					x_genes[i] = (r.nextDouble()<genetic_prob?father.genes[i]:mother.genes[i]);
+				else x_genes[i] = gene.getRandGene();
+			}
+		}
+		return x_genes;
+	}
+```
+PS: set **father_first** flag to true/false to breed a pair of offsprings
+
+#### Mutate
+After crossover, newborns still have chance to mutate its gene and the mutate ratio is set as 0.01%.
+
+#### Reproduce
+Newborns/Alive parents/Random new indeviduals make up the next generation by proportion 5:3:2
+
+
+
 ### ParallelComputationMechanism
 -------
-![](/img/GA-Concurrency.jpg "Concurrency Process")
-
-At first, the main thread achieves system initialization, and then creates five threads. For each generation, the population is split into n buckets and each thread performs the fitness evaluation, and selection for all the organisms of one bucket in parallel with all other buckets. We used a CyclicBarrier Object to make threads blocking when the thread finish running task of one generation. Until all buckets are done, the population of each bucket merges back into one sorted solution, generates new generation and releases all threads. When the generation reaches maximum number of generations. All the threads include main thread end.
-
 
 ### ClassDefinition
 -------
