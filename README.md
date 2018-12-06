@@ -10,8 +10,8 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
 
 ****
 ## Directory
-* [Problem Discription](#Problem Discription)
-* [Gene Expression](#Gene Expression)
+* [Problem Discription](#ProblemDiscription)
+* [Gene Expression](#GeneExpression)
     * A
     * A
         *  A
@@ -23,7 +23,9 @@ Machine Learning Algorithm for Flappy Bird using Neural Network and Genetic Algo
 Genetic algorithm is a search-based optimization technique inspired by the process of natural selection and genetics. It uses the same combination of selection, crossover and mutation to evolve initial random population. In this case, we will assembly massive bird generations to explore the path towards the end. In addition, birds are encouraged to eat every available fruit randomly appearing in their path. 
 
 ### Gene Expression
+-------
 Gene of each bird describes a specific move at every unit step. A bird can choose to flap up, flap down, hover and stop to eat fruit. These four independent move is defined in gene class as **Enum** variable. An array is used to store seperate genes which is stochastically generated and combined in sequence.
+
 |Genotype|phenotype|
 |:---|:---|
 |00|Flap Up|
